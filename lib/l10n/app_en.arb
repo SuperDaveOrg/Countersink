@@ -1,0 +1,776 @@
+{
+  "@@locale": "en",
+  "appTitle": "Countersink",
+  "addCounter": "Add counter",
+  "counterName": "Name",
+  "counterDescription": "Description (optional)",
+  "countPerDay": "Count per day",
+  "countPerDayHint": "Shows today's total and starts from zero each day. Past days are kept.",
+  "cancel": "Cancel",
+  "add": "Add",
+  "today": "today",
+  "noCounters": "No counters here yet.",
+  "increment": "Add {step} to {name}",
+  "@increment": {
+    "description": "Screen-reader label for a counter's plus button.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "decrement": "Take {step} from {name}",
+  "@decrement": {
+    "description": "Screen-reader label for a counter's minus button.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "firstGroupName": "Counters",
+  "@firstGroupName": {
+    "description": "Name of the group a new install starts with."
+  },
+  "firstCounterName": "My first counter",
+  "firstCounterDescription": "Tap + to count. Press and hold to edit.",
+  "settings": "Settings",
+  "about": "About",
+  "aboutCountersink": "About Countersink",
+  "aboutCountersinkHint": "Where your counts live, and why it's free",
+  "aboutHeadline": "Your counts stay with you.",
+  "aboutIntro": "Countersink keeps count of anything: reps, rows, scores, stock.",
+  "aboutStaysTitle": "It stays on your phone",
+  "aboutStaysBody": "Every count is written to a database on this device. There is no account and no server. It only goes anywhere else if you move it yourself, as a backup file.",
+  "aboutCannotSeeTitle": "We cannot see it",
+  "aboutCannotSeeBody": "Countersink is built without permission to use the internet at all. Android enforces that, and you can check it in the app's permission list.",
+  "aboutNoAdsTitle": "No ads, ever",
+  "aboutNoAdsBody": "Counting should never be interrupted. Countersink will always be free and open source: no ads, no price, no premium tier.",
+  "aboutCheckTitle": "You can check our work",
+  "aboutCheckBody": "Countersink is open source under the GNU General Public License. Anyone can read exactly what it does.",
+  "aboutTradeOff": "One trade-off worth knowing: there is no cloud copy, so a lost or wiped phone means lost counts. Save a backup file from Settings now and then, and keep it somewhere other than this phone.",
+  "version": "Version",
+  "website": "Website",
+  "sendFeedback": "Send feedback",
+  "sendFeedbackHint": "A form on the website, in your browser.",
+  "noBrowser": "No browser to open it with. Visit {website} instead.",
+  "@noBrowser": {
+    "description": "Message when the Website or Send feedback link can't be opened: {website} is the site's address.",
+    "placeholders": {
+      "website": {
+        "type": "String"
+      }
+    }
+  },
+  "versionNumber": "Version {version}",
+  "@versionNumber": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "editCounter": "Edit counter",
+  "edit": "Edit",
+  "save": "Save",
+  "delete": "Delete",
+  "undo": "Undo",
+  "counterDeleted": "Deleted {name}",
+  "@counterDeleted": {
+    "description": "Shown after a counter is deleted, beside an Undo button.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "counterColor": "Color",
+  "colorClay": "Clay",
+  "colorTeal": "Teal",
+  "colorNavy": "Navy",
+  "colorLavender": "Lavender",
+  "colorGreen": "Green",
+  "colorCustom": "Custom",
+  "@colorCustom": {
+    "description": "Screen-reader name for a counter colour that isn't one of the named ones."
+  },
+  "groups": "Groups",
+  "addGroup": "Add group",
+  "renameGroup": "Rename group",
+  "groupName": "Name",
+  "countersCount": "{count, plural, =0{No counters} =1{1 counter} other{{count} counters}}",
+  "@countersCount": {
+    "description": "How many counters a group holds.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteNamed": "Delete {name}",
+  "@deleteNamed": {
+    "description": "Label for the button that deletes the named group.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "groupDeleted": "{count, plural, =0{Deleted {name}} =1{Deleted {name} and its counter} other{Deleted {name} and its {count} counters}}",
+  "@groupDeleted": {
+    "description": "Shown after a group is deleted, beside an Undo button.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lastGroupHint": "The last group can't be deleted.",
+  "counterStep": "Step",
+  "counterStepHint": "How much each press of + or − counts.",
+  "addAmount": "Add an amount",
+  "addAmountTitle": "Add to {name}",
+  "@addAmountTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "takeAmountTitle": "Take from {name}",
+  "@takeAmountTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "amount": "Amount",
+  "takeAway": "Take away",
+  "setValue": "Set value",
+  "value": "Value",
+  "set": "Set",
+  "resetToZero": "Reset to zero",
+  "counterReset": "{name} reset to zero",
+  "@counterReset": {
+    "description": "Shown after a counter is reset, beside an Undo button.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "history": "History",
+  "historyEmpty": "Nothing counted yet.",
+  "dayToday": "Today",
+  "dayYesterday": "Yesterday",
+  "entriesCount": "{count, plural, =1{1 entry} other{{count} entries}}",
+  "@entriesCount": {
+    "description": "How many times a counter was changed on one day.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allTime": "All time",
+  "sectionCounting": "Counting",
+  "dayStartsAt": "Day starts at",
+  "dayStartsAtHint": "Anything counted before this hour belongs to the day before.",
+  "midnight": "Midnight",
+  "yourData": "Your data",
+  "backUp": "Back up to a file",
+  "backUpHint": "Everything, saved wherever you choose.",
+  "restore": "Restore from a backup",
+  "restoreHint": "Replaces what's on this phone.",
+  "backupSaved": "Backup saved",
+  "couldNotSave": "Couldn't save the file.",
+  "couldNotOpen": "Couldn't open that file.",
+  "cantRestore": "Can't restore this file",
+  "ok": "OK",
+  "restoreTitle": "Replace everything with this backup?",
+  "restoreMessage": "It has {groups}, {counters} and {entries}. Everything now on this phone will be replaced by it.",
+  "@restoreMessage": {
+    "description": "Asked before a backup replaces what is on the phone. The three placeholders are counts already in words, such as \"3 groups\", \"12 counters\" and \"4210 entries\".",
+    "placeholders": {
+      "groups": {
+        "type": "String"
+      },
+      "counters": {
+        "type": "String"
+      },
+      "entries": {
+        "type": "String"
+      }
+    }
+  },
+  "groupsCount": "{count, plural, =1{1 group} other{{count} groups}}",
+  "@groupsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "replace": "Replace",
+  "restored": "Restored",
+  "backupNotCountersink": "This isn't a Countersink backup.",
+  "backupTooNew": "This backup was made by a newer version of Countersink. Update the app, then try again.",
+  "backupDamaged": "This backup has something wrong in it and wasn't restored. Nothing on this phone was changed.\n\n{detail}",
+  "@backupDamaged": {
+    "description": "The detail is a technical note in English saying where the file went wrong.",
+    "placeholders": {
+      "detail": {
+        "type": "String"
+      }
+    }
+  },
+  "colorBrick": "Brick",
+  "colorOchre": "Ochre",
+  "colorSand": "Sand",
+  "colorOlive": "Olive",
+  "colorSage": "Sage",
+  "colorMoss": "Moss",
+  "colorSlate": "Slate",
+  "colorStorm": "Storm",
+  "colorSky": "Sky",
+  "colorPlum": "Plum",
+  "colorRose": "Rose",
+  "colorCocoa": "Cocoa",
+  "colorCharcoal": "Charcoal",
+  "colorAubergine": "Aubergine",
+  "colorLinen": "Linen",
+  "moreColors": "More colors and patterns",
+  "appearanceTitle": "Color and pattern",
+  "secondColor": "Second color",
+  "secondColorHint": "Blends into the first, from corner to corner.",
+  "noSecondColor": "None",
+  "pattern": "Pattern",
+  "patternNone": "Plain",
+  "patternStripes": "Stripes",
+  "patternDots": "Dots",
+  "patternGrid": "Grid",
+  "customColor": "Custom color",
+  "hue": "Hue",
+  "saturation": "Saturation",
+  "brightness": "Brightness",
+  "hexCode": "Hex code",
+  "useColor": "Use",
+  "done": "Done",
+  "sampleCount": "12",
+  "@sampleCount": {
+    "description": "A sample number shown on the preview card while choosing a counter's colours."
+  },
+  "reorderCounters": "Reorder counters",
+  "moveToGroup": "Move to another group",
+  "moveToGroupTitle": "Move {name} to",
+  "@moveToGroupTitle": {
+    "description": "Title of the list of groups a counter can be moved to.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "movedToGroup": "Moved to {group}",
+  "@movedToGroup": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "exportCsv": "Export as a spreadsheet",
+  "exportCsvHint": "Every entry as a CSV file, one row each.",
+  "csvSaved": "Spreadsheet saved",
+  "keepScreenOn": "Keep the screen on",
+  "keepScreenOnHint": "While Countersink is open, the screen won't dim or lock.",
+  "sectionAppearance": "Appearance",
+  "theme": "Theme",
+  "themeSystem": "Same as the phone",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "counterGoal": "Goal (optional)",
+  "counterGoalHint": "A number to reach. A counter that counts per day can aim for each day or for the week.",
+  "goalOf": "of {goal}",
+  "@goalOf": {
+    "description": "Shown under a counter's number when it has a goal, as in \"37 of 50\".",
+    "placeholders": {
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "goalReached": "Goal reached",
+  "dayStreak": "Day streak",
+  "bestStreak": "Best streak",
+  "previousMonth": "Previous month",
+  "nextMonth": "Next month",
+  "daysCount": "{count} days",
+  "@daysCount": {
+    "description": "A choice of how far back a chart looks: 7 days, 30 days, 90 days.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "averagePerDay": "Average per day",
+  "totalInRange": "Total",
+  "addEntry": "Add entry",
+  "editEntry": "Edit entry",
+  "entryAdded": "Added",
+  "entryTaken": "Taken away",
+  "entryTime": "Time",
+  "entryDeleted": "Entry deleted",
+  "belowZero": "That would take the count below zero.",
+  "perDayRefused": "This counter can't count per day yet. On at least one day in its history, more was taken away than was counted, so that day would be below zero. Correct it in History first.",
+  "noEntries": "Nothing counted on this day.",
+  "dayTotal": "Day's total",
+  "fullScreen": "Full screen",
+  "tapAnywhere": "Tap anywhere to count",
+  "closeFullScreen": "Close full screen",
+  "volumeKeys": "Volume buttons",
+  "volumeKeysHint": "Count with the phone's volume buttons while a counter is in full screen.",
+  "volumeOff": "Off",
+  "volumeUp": "Volume up adds",
+  "volumeBoth": "Up adds, down takes away",
+  "lockTouch": "Lock touch",
+  "unlockTouch": "Press and hold to unlock",
+  "touchLocked": "Touch is locked. Count with the volume buttons.",
+  "volumeCounts": "Tap anywhere or press a volume button to count",
+  "language": "Language",
+  "@language": {
+    "description": "Heading of the Language section in Settings, its item, and the title of the language dialog."
+  },
+  "sameAsPhone": "Same as the phone",
+  "@sameAsPhone": {
+    "description": "Choice in the language dialog: follow the phone's language."
+  },
+  "sameAsPhoneNow": "Same as the phone: {language}",
+  "@sameAsPhoneNow": {
+    "description": "Subtitle of the Language item when following the phone: {language} is the language in use, by its own name.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "archive": "Archive",
+  "unarchive": "Move back to its group",
+  "counterArchived": "Archived {name}",
+  "@counterArchived": {
+    "description": "Shown after a counter is archived, beside an Undo button.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "archivedCounters": "Archived counters",
+  "noArchived": "Nothing archived.",
+  "search": "Search",
+  "searchHint": "Search counters",
+  "noResults": "No counters match.",
+  "searchPrompt": "Type a counter's name, its description or its group.",
+  "autoBackup": "Automatic backup",
+  "autoBackupHint": "Off. Choose a folder to keep a backup in, saved each time you leave the app.",
+  "autoBackupTo": "To {folder}, each time you leave the app. The last 7 days are kept.",
+  "@autoBackupTo": {
+    "description": "Under Automatic backup in Settings when it is on. {folder} is the folder's name.",
+    "placeholders": {
+      "folder": {
+        "type": "String"
+      }
+    }
+  },
+  "autoBackupFailed": "The last backup couldn't be saved to {folder}. Choose the folder again.",
+  "@autoBackupFailed": {
+    "placeholders": {
+      "folder": {
+        "type": "String"
+      }
+    }
+  },
+  "backUpNow": "Back up now",
+  "chooseAnotherFolder": "Choose another folder",
+  "turnOff": "Turn off",
+  "backedUpTo": "Backed up to {folder}",
+  "@backedUpTo": {
+    "placeholders": {
+      "folder": {
+        "type": "String"
+      }
+    }
+  },
+  "goalForEach": "The goal is for each",
+  "@goalForEach": {
+    "description": "Label above a choice of two buttons, Day and Week, which finish the sentence."
+  },
+  "periodDay": "Day",
+  "periodWeek": "Week",
+  "goalThisWeek": "{done} of {goal} this week",
+  "@goalThisWeek": {
+    "description": "Shown under a counter's number when its goal is for the week, as in \"42 of 100 this week\".",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "weekStreak": "Week streak",
+  "buzzEvery": "Buzz every (optional)",
+  "buzzEveryHint": "A double buzz each time the count passes a multiple of this, such as every 10.",
+  "weekStartsOn": "Week starts on",
+  "weekStartsOnHint": "For goals that are for the week, and for the calendar.",
+  "addToHomeScreen": "Add to home screen",
+  "@addToHomeScreen": {
+    "description": "In a counter's menu: puts a widget for that counter on the phone's home screen."
+  },
+  "quickTile": "Quick settings tile",
+  "@quickTile": {
+    "description": "A Settings row. Quick settings are the buttons in the panel pulled down from the top of an Android phone."
+  },
+  "quickTileHint": "Off. Choose a counter to add to from the phone's quick settings, without opening the app.",
+  "quickTileOn": "Adds to {name}, from the phone's quick settings.",
+  "@quickTileOn": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "chooseCounter": "Choose a counter",
+  "chooseAnotherCounter": "Choose another counter",
+  "quickTileHowTo": "To add the tile: open the phone's quick settings, tap the pencil, and drag in the Countersink tile.",
+  "calculated": "Calculated from other counters",
+  "calculatedOff": "Off. Counted by hand, with plus and minus.",
+  "formulaTitle": "Calculated counter",
+  "formulaIntro": "A calculated counter isn't counted on. It shows a number worked out from other counters, and keeps up as they change.",
+  "formulaNone": "Counted by hand",
+  "formulaSum": "A total",
+  "formulaSumHint": "Several counters added up.",
+  "formulaDifference": "A difference",
+  "formulaDifferenceHint": "One counter, less the others. In, less out.",
+  "formulaPercent": "A share, in percent",
+  "formulaPercentHint": "One counter as a share of several together.",
+  "formulaEvery": "Completed rounds",
+  "formulaEveryHint": "How many times another counter has gone round: every 108 beads, every 8 rows.",
+  "sectionShows": "What it shows",
+  "formulaAddUp": "Add up",
+  "formulaStartWith": "Start with",
+  "formulaTakeAway": "Take away",
+  "formulaShareOf": "The share of",
+  "formulaTogetherWith": "In the total of it and",
+  "formulaRoundsOf": "Rounds of",
+  "formulaAllTime": "Keep a running total",
+  "formulaAllTimeHint": "Per-day counters count for everything they have ever counted, not just today. They start each day from zero; this number carries on.",
+  "formulaStartFrom": "Start from (optional)",
+  "formulaStartFromHint": "A number the total already stands at, from before it was counted here. What is counted is added to it.",
+  "roundSize": "One round is",
+  "roundSizeHint": "How many make a round.",
+  "lineSum": "Total of {names}",
+  "@lineSum": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "lineDifference": "{first} less {others}",
+  "@lineDifference": {
+    "placeholders": {
+      "first": {
+        "type": "String"
+      },
+      "others": {
+        "type": "String"
+      }
+    }
+  },
+  "linePercent": "{first} as a share of {all}",
+  "@linePercent": {
+    "placeholders": {
+      "first": {
+        "type": "String"
+      },
+      "all": {
+        "type": "String"
+      }
+    }
+  },
+  "lineEvery": "Rounds of {size} in {name}",
+  "@lineEvery": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "lineTowardNext": "{count} toward the next",
+  "@lineTowardNext": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lineBroken": "The counter it was worked out from is gone",
+  "noOrdinaryCounters": "Add a counter to count by hand first. A calculated one is worked out from those.",
+  "emptyGroup": "Empty group",
+  "emptyGroupHint": "Name it, then add your own counters.",
+  "readyMadeSets": "Ready-made sets",
+  "copyGroupNamed": "Copy {name}, without its counts",
+  "@copyGroupNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCopyName": "{name} (copy)",
+  "@groupCopyName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "presetRows": "Rows and repeats",
+  "presetRowsHint": "Rows, and the repeats of 8 they make.",
+  "presetBeads": "Beads",
+  "presetBeadsHint": "Beads, and the rounds of 108 they make.",
+  "presetInOut": "In and out",
+  "presetInOutHint": "Counted in, counted out, and how many are inside.",
+  "presetScore": "Scoreboard",
+  "presetScoreHint": "Two scores to keep.",
+  "presetMade": "Made and missed",
+  "presetMadeHint": "Made, missed, and the share that were made.",
+  "nameRows": "Rows",
+  "nameRepeats": "Repeats",
+  "nameBeads": "Beads",
+  "nameRounds": "Rounds",
+  "nameIn": "In",
+  "nameOut": "Out",
+  "nameInside": "Inside",
+  "nameUs": "Us",
+  "nameThem": "Them",
+  "nameMade": "Made",
+  "nameMissed": "Missed",
+  "nameMadeShare": "Made, in percent",
+  "importFromApp": "Import from another app",
+  "importFromAppHint": "Counters from BetterCounter, Counter or Simple Counter, added as new groups.",
+  "importChooseApp": "Which app is the file from?",
+  "importBetterCounterHint": "Its exported CSV file. Every count comes with its time.",
+  "importCounterHint": "Its exported CSV file. Each counter comes with its number.",
+  "importSimpleCounterHint": "Its JSON backup. Labels become groups.",
+  "importedGroupName": "Imported",
+  "cantImport": "Can't import this file",
+  "importNotFrom": "This doesn't look like a file from {app}.",
+  "@importNotFrom": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      }
+    }
+  },
+  "importEmpty": "There are no counters in this file.",
+  "importIsBackup": "This is a Countersink backup. Use \"{restore}\" for it.",
+  "@importIsBackup": {
+    "description": "restore is the name of the Settings row for restoring a backup.",
+    "placeholders": {
+      "restore": {
+        "type": "String"
+      }
+    }
+  },
+  "importDone": "Imported {counters} and {entries}.",
+  "@importDone": {
+    "placeholders": {
+      "counters": {
+        "type": "String"
+      },
+      "entries": {
+        "type": "String"
+      }
+    }
+  },
+  "importSkipped": "{count, plural, =1{1 line couldn't be read.} other{{count} lines couldn't be read.}}",
+  "@importSkipped": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reachedGoal": "{name} has reached {goal}",
+  "@reachedGoal": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "goalHintCalculated": "A number to reach. A message says so when it gets there.",
+  "sendToPhone": "Send to another phone",
+  "@sendToPhone": {
+    "description": "Screen title. History is shown as QR codes for another phone running Ebb to scan."
+  },
+  "receiveFromPhone": "Receive from another phone",
+  "@receiveFromPhone": {
+    "description": "Screen title, and the Settings item that opens it."
+  },
+  "shareWhatToSend": "What would you like to send?",
+  "@shareWhatToSend": {
+    "description": "Heading of the Send screen's first step: choosing whose history to send."
+  },
+  "sendEverything": "Everything",
+  "@sendEverything": {
+    "description": "How far back: all of the history."
+  },
+  "sendEverythingHint": "Moving to a new phone.",
+  "@sendEverythingHint": {
+    "description": "Under the 'Everyone on this phone' send choice: what it is for."
+  },
+  "shareWhatToInclude": "What to include",
+  "@shareWhatToInclude": {
+    "description": "Section heading."
+  },
+  "shareShowCodes": "Show the codes",
+  "@shareShowCodes": {
+    "description": "Button at the foot of the 'How much' step: shows the QR codes."
+  },
+  "shareHowToReceive": "On the other phone, open Countersink, go to Settings → Receive from another phone, and point the camera at this screen.",
+  "@shareHowToReceive": {
+    "description": "Settings → Receive from another phone must match those screens’ names."
+  },
+  "shareCodeOf": "{total, plural, other{Code {index} of {total}}}",
+  "@shareCodeOf": {
+    "description": "Which QR code is showing. total is 2 or more.",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "sharePreviousCode": "Previous code",
+  "@sharePreviousCode": {
+    "description": "Tooltip."
+  },
+  "sharePause": "Pause",
+  "@sharePause": {
+    "description": "Tooltip: stop the codes changing."
+  },
+  "sharePlay": "Play",
+  "@sharePlay": {
+    "description": "Tooltip: let the codes change on their own again."
+  },
+  "shareNextCode": "Next code",
+  "@shareNextCode": {
+    "description": "Tooltip."
+  },
+  "shareCodesChange": "The codes change on their own. The other phone collects them in any order.",
+  "@shareCodesChange": {
+    "description": "Under the codes when there is more than one: they cycle on their own, and scanning order does not matter."
+  },
+  "shareNotCountersink": "That code isn't from Countersink.",
+  "@shareNotCountersink": {
+    "description": "On the Receive screen after scanning a QR code that is not Ebb's."
+  },
+  "shareNewerVersion": "The other phone has a newer version of Countersink. Update this one first.",
+  "@shareNewerVersion": {
+    "description": "On the Receive screen when the codes come from a newer Ebb than this one."
+  },
+  "shareRestarted": "The other phone started over. Collecting the new codes.",
+  "@shareRestarted": {
+    "description": "On the Receive screen when the sender started a new transfer part way through, so the codes collected so far are dropped."
+  },
+  "shareUnreadable": "Some codes didn't read cleanly. Let's scan them again.",
+  "@shareUnreadable": {
+    "description": "On the Receive screen when the collected codes did not assemble into a readable backup; scanning starts again."
+  },
+  "shareNeedsCamera": "Countersink needs the camera to read the codes. You can allow it in the system settings for Countersink.",
+  "@shareNeedsCamera": {
+    "description": "On the Receive screen in place of the camera view when camera permission was refused."
+  },
+  "sharePointCamera": "Point the camera at the code on the other phone.",
+  "@sharePointCamera": {
+    "description": "Status at the top of the Receive screen before any code is read."
+  },
+  "shareReading": "Reading…",
+  "@shareReading": {
+    "description": "Status on the Receive screen while a single-code transfer is being read; with more codes a count shows instead."
+  },
+  "shareCodesReceived": "{total, plural, other{{received} of {total} codes received}}",
+  "@shareCodesReceived": {
+    "description": "total is 2 or more.",
+    "placeholders": {
+      "received": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "shareStillNeeded": "Still needed: {codes}",
+  "@shareStillNeeded": {
+    "description": "codes is a list of code numbers, like “2, 5”.",
+    "placeholders": {
+      "codes": {
+        "type": "String"
+      }
+    }
+  },
+  "sendToPhoneHint": "Show your counters as codes for another phone to scan.",
+  "receiveFromPhoneHint": "Scan the codes another phone shows. What arrives is added as new groups.",
+  "sendSomeCounters": "Just some counters",
+  "sendWithHistory": "Counters and their history",
+  "sendWithHistoryHint": "Every entry, with its time.",
+  "sendNumbersOnly": "Counters and their numbers",
+  "sendNumbersOnlyHint": "Far fewer codes. Each counter arrives with the number it shows now.",
+  "sendSummary": "Sending {counters} and {entries}.",
+  "@sendSummary": {
+    "placeholders": {
+      "counters": {
+        "type": "String"
+      },
+      "entries": {
+        "type": "String"
+      }
+    }
+  },
+  "receivedDone": "Received {counters} and {entries}.",
+  "@receivedDone": {
+    "placeholders": {
+      "counters": {
+        "type": "String"
+      },
+      "entries": {
+        "type": "String"
+      }
+    }
+  },
+  "sendNothingChosen": "Choose at least one counter to send."
+}

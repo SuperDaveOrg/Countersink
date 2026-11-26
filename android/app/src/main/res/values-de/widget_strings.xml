@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Zähler</string>
+    <string name="widget_description">Ein Zähler mit Plus und Minus.</string>
+    <string name="widget_choose">Zähler auswählen</string>
+    <string name="widget_gone">Diesen Zähler gibt es nicht mehr. Tippen, um einen anderen zu wählen.</string>
+    <string name="widget_none">Zuerst in Countersink einen Zähler anlegen.</string>
+    <string name="widget_add">%1$d zu %2$s hinzufügen</string>
+    <string name="widget_take">%1$d von %2$s abziehen</string>
+    <string name="tile_none">Zähler in den Einstellungen auswählen</string>
+</resources>

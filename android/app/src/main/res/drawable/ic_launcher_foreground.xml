@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from assets/brand/countersink_logo.svg. Adaptive icon
+     foreground: the logo without its badge, which is the icon's background
+     colour. The clay stroke is drawn cream and wider first for the edge
+     around it, since vector drawables have no paint-order. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- The 512-unit logo at the scale Nexpill's uses, which keeps the ends
+         of the clay stroke inside the 66dp safe zone. -->
+    <group android:scaleX="0.165" android:scaleY="0.165"
+        android:translateX="11.76" android:translateY="11.76">
+        <!-- The marks lean, as a hand makes them -->
+        <group android:rotation="-8" android:pivotX="256" android:pivotY="256">
+            <path android:pathData="M 169 150 V 362"
+                android:strokeColor="#FF14344B" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 227 150 V 362"
+                android:strokeColor="#FF1A8783" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 285 150 V 362"
+                android:strokeColor="#FF14344B" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 343 150 V 362"
+                android:strokeColor="#FF1A8783" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <!-- The fifth, across the rest -->
+            <path android:pathData="M 116 338 L 396 174"
+                android:strokeColor="#FFF5F1EA" android:strokeWidth="58"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 116 338 L 396 174"
+                android:strokeColor="#FFC4613F" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+        </group>
+    </group>
+</vector>

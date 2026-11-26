@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Countersink logo, concept D: minus and plus</title>
+  <desc>The two buttons of a counter as the halves of one key: navy minus on the left, clay plus on the right, as they sit on every card in the app. SuperDaveLab family style: flat shapes on a cream badge.</desc>
+  <!-- Badge, as Ebb, Nexpill and CoreSample -->
+  <circle cx="256" cy="256" r="236" fill="#F5F1EA" stroke="#D3CCC1" stroke-width="8"/>
+  <!-- The key leans, as Nexpill's capsule does; a cream edge between the halves -->
+  <g transform="rotate(-14 256 256)">
+    <g stroke="#F5F1EA" stroke-width="12" paint-order="stroke" stroke-linejoin="round">
+      <path d="M 256 166 H 176 A 90 90 0 0 0 176 346 H 256 Z" fill="#14344B"/>
+      <path d="M 256 166 H 336 A 90 90 0 0 1 336 346 H 256 Z" fill="#C4613F"/>
+    </g>
+    <!-- Minus -->
+    <rect x="130" y="240" width="84" height="32" rx="16" fill="#F5F1EA"/>
+    <!-- Plus -->
+    <rect x="298" y="240" width="84" height="32" rx="16" fill="#F5F1EA"/>
+    <rect x="324" y="214" width="32" height="84" rx="16" fill="#F5F1EA"/>
+  </g>
+</svg>

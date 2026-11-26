@@ -1,0 +1,181 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Run F-Droid's own build of Countersink locally, before pushing a recipe change.
+#
+# Does what the "fdroid build" job in fdroiddata's CI does, in the same
+# Docker image (registry.gitlab.com/fdroid/fdroidserver:buildserver-trixie):
+# fetches the latest fdroidserver, then `fdroid fetchsrclibs` and
+# `fdroid build --test --on-server` using docs/fdroid/com.superdavelab.countersink.yml,
+# pointed at a commit of this repo instead of GitHub. Only committed code is
+# built: the commit is cloned from this repo, not the working tree.
+#
+# The recipe has one build block per ABI (see "ABI splits" in
+# docs/RELEASING.md), and all of them are built. If dist/release/ has signed
+# APKs built from that same commit (by tool/build_release.sh), each is
+# compared with F-Droid's build of the same ABI using apksigcopier, the check
+# F-Droid runs before publishing the developer-signed APKs.
+#
+# Takes 10-20 minutes. Needs Docker; the comparison needs apksigcopier
+# (sudo apt install apksigcopier) and apksigner from the Android SDK.
+#
+# Usage:
+#   tool/fdroid_build_test.sh [--ref REF] [--keep]
+#
+# Options:
+#   --ref REF   Commit, tag or branch to build (default: HEAD)
+#   --keep      Keep the work directory (Flutter checkout, logs) afterwards
+#   -h, --help  Show this help
+
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APPID="com.superdavelab.countersink"
+IMAGE="registry.gitlab.com/fdroid/fdroidserver:buildserver-trixie"
+REF=HEAD
+KEEP=0
+
+usage() { awk 'NR > 1 && /^#/ { sub(/^# ?/, ""); print; seen = 1; next } seen { exit }' "$0"; }
+die() { echo "fdroid_build_test: $*" >&2; exit 1; }
+say() { echo "==> $*"; }
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --ref) REF="${2:?--ref needs a value}"; shift 2 ;;
+    --keep) KEEP=1; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) usage; exit 1 ;;
+  esac
+done
+
+command -v docker >/dev/null || die "Docker is needed"
+COMMIT="$(git -C "$REPO" rev-parse --verify "$REF^{commit}")" || die "no such ref: $REF"
+PUBSPEC_VERSION="$(git -C "$REPO" show "$COMMIT:pubspec.yaml" | sed -n 's/^version: *//p')"
+VERSION_NAME="${PUBSPEC_VERSION%+*}"
+VERSION_CODE="${PUBSPEC_VERSION#*+}"
+
+WORK="$(mktemp -d "${TMPDIR:-/tmp}/countersink-fdroid-test.XXXXXX")"
+cleanup() {
+  if (( KEEP )); then echo "Work directory kept: $WORK"; else rm -rf "$WORK"; fi
+}
+trap cleanup EXIT
+
+say "Building $VERSION_NAME ($VERSION_CODE) from ${COMMIT:0:12} the way F-Droid does"
+mkdir -p "$WORK/fdroiddata/metadata" "$WORK/fdroiddata/srclibs" "$WORK/fdroiddata/config"
+git clone -q "$REPO" "$WORK/src"
+git -C "$WORK/src" checkout -q "$COMMIT"
+curl -fsSL -o "$WORK/fdroiddata/srclibs/flutter.yml" \
+  https://gitlab.com/fdroid/fdroiddata/-/raw/master/srclibs/flutter.yml
+curl -fsSL -o "$WORK/fdroiddata/config/fetch.fsck.skipList" \
+  https://gitlab.com/fdroid/fdroiddata/-/raw/master/config/fetch.fsck.skipList
+
+# The per-ABI version codes, in the recipe's block order (its
+# VercodeOperation, and android/app/build.gradle.kts).
+ABIS=(armeabi-v7a arm64-v8a x86_64)
+CODES=()
+for i in "${!ABIS[@]}"; do CODES+=($((VERSION_CODE * 10 + i + 1))); done
+
+# The recipe, pointed at the local clone and this commit. The reference
+# binaries and the signing key come out: that check is done below, against
+# dist/release/.
+python3 - "$REPO/docs/fdroid/$APPID.yml" "$WORK/fdroiddata/metadata/$APPID.yml" \
+  "$COMMIT" "$VERSION_NAME" "${CODES[@]}" <<'EOF'
+import re, sys
+src, dest, commit, name, *codes = sys.argv[1:]
+s = open(src).read()
+s = re.sub(r"(?m)^Repo: .*$", "Repo: /src", s)
+s = re.sub(r"(?m)^(Binaries|AllowedAPKSigningKeys): .*\n", "", s)
+s = re.sub(r"(?m)^    binary: .*\n", "", s)
+s = re.sub(r"(?m)^(  - versionName: ).*$", rf"\g<1>{name}", s)
+s = re.sub(r"(?m)^(    commit: ).*$", rf"\g<1>{commit}", s)
+found = re.findall(r"(?m)^    versionCode: .*$", s)
+assert len(found) == len(codes), f"recipe has {len(found)} builds, expected {len(codes)}"
+it = iter(codes)
+s = re.sub(r"(?m)^(    versionCode: ).*$", lambda m: m.group(1) + next(it), s)
+open(dest, "w").write(s)
+EOF
+
+cat > "$WORK/run.sh" <<'EOF'
+#!/bin/bash
+# Inside the container: the setup and commands of fdroiddata's CI build job.
+set -ex
+source /etc/profile.d/bsenv.sh
+mkdir -p $fdroidserver
+curl --silent https://gitlab.com/fdroid/fdroidserver/-/archive/master/fdroidserver-master.tar.gz \
+  | tar -xz --directory=$fdroidserver --strip-components=1
+apt-get update -qq
+apt-get install -y -qq sudo openjdk-21-jdk-headless >/dev/null
+update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
+curl --silent 'https://gitlab.com/fdroid/fdroid-bootstrap-buildserver/-/raw/master/roles/production_hardening/files/gitconfig' \
+  > $home_vagrant/.gitconfig
+printf '[safe]\n\tdirectory = *\n' >> $home_vagrant/.gitconfig
+for d in /fdroiddata/logs /fdroiddata/tmp /fdroiddata/unsigned $home_vagrant/.android $home_vagrant/.gradle $home_vagrant/metadata; do
+  mkdir -p $d
+done
+cp /fdroiddata/metadata/*.yml $home_vagrant/metadata/
+for d in srclibs tmp unsigned logs; do ln -sfn /fdroiddata/$d $home_vagrant/$d; done
+ln -sfn /fdroiddata $home_vagrant/fdroiddata
+chown -R vagrant $home_vagrant /fdroiddata
+export GRADLE_USER_HOME=$home_vagrant/.gradle
+cd $home_vagrant
+fdroid="sudo --preserve-env --user vagrant env PATH=$fdroidserver:$PATH PYTHONPATH=$fdroidserver:$fdroidserver/examples PYTHONUNBUFFERED=true TERM=dumb HOME=$home_vagrant fdroid"
+$fdroid fetchsrclibs $APPS --verbose
+$fdroid build --verbose --test --refresh-scanner --on-server --no-tarball $APPS
+EOF
+chmod +x "$WORK/run.sh"
+
+mkdir -p "$REPO/dist/fdroid-test"
+# One container per ABI, as fdroiddata's CI gives each build a fresh machine:
+# a build server removes sudo after its first build, so a second build in the
+# same container fails. The Flutter checkout stays in the shared srclibs.
+for c in "${CODES[@]}"; do
+  LOG="$REPO/dist/fdroid-test/build-${COMMIT:0:9}-$c.log"
+  say "Building $c in $IMAGE (log: ${LOG#"$REPO"/})"
+  if ! docker run --rm -e APPS="$APPID:$c" \
+      -v "$WORK/fdroiddata:/fdroiddata" -v "$WORK/src:/src:ro" -v "$WORK/run.sh:/run.sh:ro" \
+      "$IMAGE" /run.sh > "$LOG" 2>&1; then
+    grep -n -E 'ERROR|What went wrong|^e: ' "$LOG" | head -20 >&2 || true
+    die "F-Droid's build of $c failed; see ${LOG#"$REPO"/}"
+  fi
+done
+
+for i in "${!ABIS[@]}"; do
+  cp "$WORK/fdroiddata/tmp/${APPID}_${CODES[$i]}.apk" \
+    "$REPO/dist/fdroid-test/${APPID}_${CODES[$i]}-${COMMIT:0:9}-unsigned.apk"
+done
+say "F-Droid's builds succeeded, in dist/fdroid-test/:"
+for c in "${CODES[@]}"; do echo "    ${APPID}_$c-${COMMIT:0:9}-unsigned.apk"; done
+
+# The signed APKs tool/build_release.sh made from this same commit, if any.
+base=""
+for info in "$REPO"/dist/release/countersink-*.BUILD-INFO.txt; do
+  [[ -f $info ]] || continue
+  grep -q "^commit *$COMMIT" "$info" || continue
+  base="$REPO/dist/release/$(sed -n 's/^name *//p' "$info")"
+  base="${base%.apk}"
+done
+if [[ -z $base ]]; then
+  echo "    No signed APKs from this commit in dist/release/, so no reproducibility check."
+  echo "    Build them with: tool/build_release.sh --ref ${COMMIT:0:12}"
+  exit 0
+fi
+
+SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Android/Sdk}}"
+PATH="$(ls -d "$SDK"/build-tools/*/ 2>/dev/null | sort -V | tail -1):$PATH"
+if ! command -v apksigcopier >/dev/null; then
+  echo "    Install apksigcopier to compare (sudo apt install apksigcopier), then run for each ABI:"
+  echo "    apksigcopier compare ${base#"$REPO"/}-<abi>.apk --unsigned dist/fdroid-test/${APPID}_<code>-${COMMIT:0:9}-unsigned.apk"
+  exit 0
+fi
+failed=0
+for i in "${!ABIS[@]}"; do
+  signed="$base-${ABIS[$i]}.apk"
+  unsigned="$REPO/dist/fdroid-test/${APPID}_${CODES[$i]}-${COMMIT:0:9}-unsigned.apk"
+  [[ -f $signed ]] || { echo "    missing ${signed#"$REPO"/}" >&2; failed=1; continue; }
+  if apksigcopier compare "$signed" --unsigned "$unsigned"; then
+    say "${ABIS[$i]} (${CODES[$i]}): reproducible"
+  else
+    echo "    ${ABIS[$i]} (${CODES[$i]}): F-Droid's build differs from ${signed#"$REPO"/}" >&2
+    failed=1
+  fi
+done
+(( ! failed )) || die "not reproducible; F-Droid would refuse to publish"
+say "All ABIs reproducible: F-Droid can publish the signed APKs."

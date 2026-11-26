@@ -1,0 +1,1 @@
+A tally counter that keeps count of anything. No ads, no account, no internet.

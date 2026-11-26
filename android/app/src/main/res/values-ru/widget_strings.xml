@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Счётчик</string>
+    <string name="widget_description">Один счётчик с плюсом и минусом.</string>
+    <string name="widget_choose">Выберите счётчик</string>
+    <string name="widget_gone">Этого счётчика больше нет. Нажмите, чтобы выбрать другой.</string>
+    <string name="widget_none">Сначала добавьте счётчик в Countersink.</string>
+    <string name="widget_add">Прибавить %1$d: %2$s</string>
+    <string name="widget_take">Отнять %1$d: %2$s</string>
+    <string name="tile_none">Выберите счётчик в настройках</string>
+</resources>

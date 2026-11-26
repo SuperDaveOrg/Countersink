@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The words the home-screen widget and the quick-settings tile use.
+     Everything else on screen comes from lib/l10n; these few are here
+     because those two are drawn by Android, without Flutter. Keep every
+     values-xx/widget_strings.xml in step: a test checks that they hold the
+     same names. -->
+<resources>
+    <string name="widget_name">Counter</string>
+    <string name="widget_description">One counter, with plus and minus.</string>
+    <string name="widget_choose">Choose a counter</string>
+    <string name="widget_gone">This counter is gone. Tap to choose another.</string>
+    <string name="widget_none">Add a counter in Countersink first.</string>
+    <string name="widget_add">Add %1$d to %2$s</string>
+    <string name="widget_take">Take %1$d from %2$s</string>
+    <string name="tile_none">Choose a counter in Settings</string>
+</resources>

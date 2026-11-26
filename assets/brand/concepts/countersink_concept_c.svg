@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Countersink logo, concept C: the beads</title>
+  <desc>Three rods of an abacus, with one clay bead partway across: the one being counted now. SuperDaveLab family style: flat shapes on a cream badge.</desc>
+  <defs>
+    <clipPath id="badge"><circle cx="256" cy="256" r="232"/></clipPath>
+  </defs>
+  <!-- Badge, as Ebb, Nexpill and CoreSample -->
+  <circle cx="256" cy="256" r="236" fill="#F5F1EA" stroke="#D3CCC1" stroke-width="8"/>
+  <g clip-path="url(#badge)" transform="rotate(-8 256 256)">
+    <!-- The rods, running off both edges of the badge -->
+    <g stroke="#A09EB9" stroke-width="12" stroke-linecap="round">
+      <line x1="0" y1="164" x2="512" y2="164"/>
+      <line x1="0" y1="256" x2="512" y2="256"/>
+      <line x1="0" y1="348" x2="512" y2="348"/>
+    </g>
+    <!-- Beads, each cut free of its neighbours by a cream edge -->
+    <g stroke="#F5F1EA" stroke-width="10" paint-order="stroke">
+      <rect x="92" y="126" width="56" height="76" rx="26" fill="#14344B"/>
+      <rect x="150" y="126" width="56" height="76" rx="26" fill="#1A8783"/>
+      <rect x="364" y="126" width="56" height="76" rx="26" fill="#14344B"/>
+      <rect x="92" y="218" width="56" height="76" rx="26" fill="#1A8783"/>
+      <rect x="306" y="218" width="56" height="76" rx="26" fill="#1A8783"/>
+      <rect x="364" y="218" width="56" height="76" rx="26" fill="#14344B"/>
+      <rect x="92" y="310" width="56" height="76" rx="26" fill="#14344B"/>
+      <rect x="150" y="310" width="56" height="76" rx="26" fill="#1A8783"/>
+      <rect x="208" y="310" width="56" height="76" rx="26" fill="#14344B"/>
+      <!-- The one on its way across: the only clay in the mark -->
+      <rect x="212" y="218" width="56" height="76" rx="26" fill="#C4613F"/>
+    </g>
+  </g>
+</svg>

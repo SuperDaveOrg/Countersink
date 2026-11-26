@@ -1,0 +1,7 @@
+The first release of Countersink.
+
+• Counters in groups, with a history of every count, daily and weekly goals, streaks and charts.
+• Counters worked out from others: totals, differences, shares and completed rounds.
+• Full-screen counting, volume buttons, a home-screen widget and a quick-settings tile.
+• Backups to a file or a folder you choose, and import from other counter apps.
+• No ads, no account, no internet permission.

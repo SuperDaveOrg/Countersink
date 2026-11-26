@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The card's corners, as in the app. From Android 12 the phone's own
+         widget corner is used instead (values-v31). -->
+    <dimen name="widget_radius">20dp</dimen>
+</resources>

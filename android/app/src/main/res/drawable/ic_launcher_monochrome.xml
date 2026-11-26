@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from assets/brand/countersink_logo.svg. Monochrome layer for
+     themed icons (Android 13+): one colour, so each upright stops short of
+     the stroke across it, leaving a gap where the logo has a cream edge. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:scaleX="0.165" android:scaleY="0.165"
+        android:translateX="11.76" android:translateY="11.76">
+        <group android:rotation="-8" android:pivotX="256" android:pivotY="256">
+            <!-- Each upright in pieces, above and below the fifth stroke. The
+                 first has nothing left below it and the last nothing above:
+                 a stub there would be a dot, and dots either side of a
+                 slash read as a percent sign. -->
+            <path android:pathData="M 169 150 V 252"
+                android:strokeColor="#FF000000" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 227 150 V 218 M 227 328 V 362"
+                android:strokeColor="#FF000000" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 285 150 V 184 M 285 294 V 362"
+                android:strokeColor="#FF000000" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <path android:pathData="M 343 260 V 362"
+                android:strokeColor="#FF000000" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+            <!-- The fifth, across the rest -->
+            <path android:pathData="M 116 338 L 396 174"
+                android:strokeColor="#FF000000" android:strokeWidth="34"
+                android:strokeLineCap="round"/>
+        </group>
+    </group>
+</vector>

@@ -1,0 +1,2 @@
+• New: "Keep a running total" on a calculated counter. When it is worked out from a counter that counts per day, it can now carry on across days instead of starting from zero with it. Turn it on under "Calculated from other counters" when editing the counter.
+• A running total can start from a number you already had, so it picks up where you left off.

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Countersink logo, concept B: the tally</title>
+  <desc>Five tally marks: four upright strokes in navy and teal, and the clay stroke across them that closes the five. The oldest way of keeping count. SuperDaveLab family style: flat shapes on a cream badge.</desc>
+  <!-- Badge, as Ebb, Nexpill and CoreSample -->
+  <circle cx="256" cy="256" r="236" fill="#F5F1EA" stroke="#D3CCC1" stroke-width="8"/>
+  <!-- The marks lean, as a hand makes them -->
+  <g transform="rotate(-8 256 256)" stroke-linecap="round">
+    <line x1="169" y1="150" x2="169" y2="362" stroke="#14344B" stroke-width="34"/>
+    <line x1="227" y1="150" x2="227" y2="362" stroke="#1A8783" stroke-width="34"/>
+    <line x1="285" y1="150" x2="285" y2="362" stroke="#14344B" stroke-width="34"/>
+    <line x1="343" y1="150" x2="343" y2="362" stroke="#1A8783" stroke-width="34"/>
+    <!-- The fifth, across the rest: the only clay in the mark, cut free by a cream edge -->
+    <line x1="116" y1="338" x2="396" y2="174" stroke="#F5F1EA" stroke-width="58"/>
+    <line x1="116" y1="338" x2="396" y2="174" stroke="#C4613F" stroke-width="34"/>
+  </g>
+</svg>

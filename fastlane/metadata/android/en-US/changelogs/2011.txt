@@ -1,0 +1,1 @@
+• Fixed: switching a counter to "Count per day" could show a number below zero when a day in its history took away more than it counted. The editor now keeps the switch off and says why.

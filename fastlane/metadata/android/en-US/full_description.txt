@@ -1,0 +1,35 @@
+Countersink keeps count of anything: pull-ups today, rows knitted, points scored, boxes on a shelf. Each counter is a large number with minus on one side and plus on the other, and counters live in groups, each group a tab.
+
+<b>Made for counting without looking</b>
+• A plain tap only ever counts. Everything else opens from press and hold, so a stray touch mid-count can't open a dialog.
+• Plus and minus stay where they are. A count never goes below zero.
+• Full screen turns the whole screen into the button, and the volume buttons can count there too.
+• A tick for every count, a double buzz every so many if you want one, and a longer one at the goal.
+
+<b>Every count is kept, with its time</b>
+• Counters that start from zero each day and keep the days before, with the day starting at the hour you choose.
+• History for each counter: a chart, a month calendar, streaks, and every entry of a day, which you can correct, delete or add to later.
+• A goal for each day, for the week, or a total to reach.
+
+<b>Counters that work together</b>
+• A counter can show a number worked out from others: a total, a difference, a share in percent, or completed rounds, such as every 108 beads or every 8 rows.
+• Ready-made sets to start from: rows and repeats, beads, in and out, a scoreboard, made and missed.
+
+<b>Yours to arrange</b>
+• Any colour for a counter, a second colour to blend into, and patterns.
+• Light and dark, the dark on true black. English, German, Spanish, French, Italian, Portuguese and Russian.
+
+<b>Without opening the app</b>
+• A home-screen widget for any counter, from one cell up.
+• A quick-settings tile that adds to a counter you choose.
+
+<b>Your counts stay on your phone</b>
+• No account, no server, no sync, and no internet permission: Android itself stops Countersink from sending anything anywhere, and you can check that in the app's permission list. The one permission it asks for is the camera, and only when you receive from another phone.
+• No ads, analytics or tracking.
+• Back up to a plain, documented file wherever you choose, or have a backup saved into a folder you pick each time you leave the app. Export every entry as a spreadsheet.
+• Move counters to another phone by scanning a few QR codes: one phone shows, the other looks. All of them or the ones you choose. Nothing goes over a network.
+• Bring counters in from BetterCounter, Counter or Simple Counter.
+
+There's no cloud copy, so a lost phone means lost counts unless you've saved a backup.
+
+Countersink is free, open source under the GNU General Public License, and has no ads or premium tier.

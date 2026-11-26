@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Contatore</string>
+    <string name="widget_description">Un contatore, con più e meno.</string>
+    <string name="widget_choose">Scegli un contatore</string>
+    <string name="widget_gone">Questo contatore non c\'è più. Tocca per sceglierne un altro.</string>
+    <string name="widget_none">Aggiungi prima un contatore in Countersink.</string>
+    <string name="widget_add">Aggiungi %1$d a %2$s</string>
+    <string name="widget_take">Togli %1$d da %2$s</string>
+    <string name="tile_none">Scegli un contatore nelle impostazioni</string>
+</resources>

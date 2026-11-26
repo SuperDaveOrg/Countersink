@@ -1,0 +1,319 @@
+# Releasing Countersink
+
+How versions are numbered, how a release is built, and how the signing key is
+kept. The same process as Nexpill and Ebb, whose scripts these are.
+
+## Version numbers
+
+Countersink uses [semantic versioning](https://semver.org), `MAJOR.MINOR.PATCH`,
+starting at **0.1.0**. While the major number is 0 the app is early and the
+rules are looser.
+
+| Bump | When |
+|---|---|
+| **Patch** (0.1.0 → 0.1.1) | Fixes only. Nothing new to learn. |
+| **Minor** (0.1.1 → 0.2.0) | New features, new screens, a database migration. |
+| **Major** (0.x → 1.0, 1.x → 2.0) | 1.0 when it's been used for real and the open roadmap questions are settled. After that, only for a change existing users must know about — above all, anything that stops older backup files restoring. |
+
+**The version lives in one place:** `pubspec.yaml`, as `NAME+CODE`. Android's
+version code is derived from the name, never counted by hand:
+
+```
+code = major * 10000 + minor * 100 + patch        0.1.0 → 100, 1.2.3 → 10203
+```
+
+So minor and patch stay below 100, and the code always goes up with the
+version, which Android and F-Droid require. `tool/bump_version.sh` enforces
+both. Each APK's own version code is ten times this plus a digit for its
+processor type; see "ABI splits".
+
+Two other version numbers exist and move **independently** of the app's:
+
+| Number | Where | Changes when |
+|---|---|---|
+| Database schema | `CountersinkDatabase.version` | The tables change. Add a migration; never edit a shipped one. |
+| Backup format | `countersinkBackup` in files, `backupFormatVersion` | A field changes meaning. See `docs/backup-format.md`. |
+
+## Tags
+
+A release is an annotated tag `vX.Y.Z` on `main`, matching `pubspec.yaml`.
+F-Droid watches these tags to find new versions, so a tag is a promise: never
+move or reuse one.
+
+## The signing key
+
+Every APK is signed, and Android will only install an update signed with the
+**same key** as the version already installed. So:
+
+- **Lose the key and you can never update the app** for anyone who has it —
+  they'd have to uninstall, losing their data unless they'd backed up.
+- **Leak the key** and someone else can publish "updates".
+
+Keep it outside the repository, with a backup somewhere safe (an encrypted
+USB stick, a password manager's file storage). The build refuses to use the
+debug key for a release.
+
+F-Droid publishes APKs signed with this key too: it rebuilds each release
+and ships the one from the GitHub release if the two match (see
+"Reproducible builds"). So one key covers every copy of Countersink — F-Droid,
+GitHub releases, IzzyOnDroid, the website — and people can update from any
+of them.
+
+### Creating it (once)
+
+Nexpill and Ebb each have a key of their own in `~/.android-keys/`, so that
+losing or leaking one touches one app. Countersink's was made the same way
+on 2026-11-23, and this is how to make it again on a new machine only if the
+app has never been released; after a release, the key must be the same one,
+restored from its backup:
+
+```bash
+mkdir -p ~/.android-keys
+keytool -genkeypair -v \
+  -keystore ~/.android-keys/countersink-release.jks \
+  -alias countersink -keyalg RSA -keysize 4096 -validity 36500 \
+  -dname "CN=SuperDaveLab"
+```
+
+Then create `android/key.properties` (gitignored — never commit it):
+
+```properties
+storeFile=/home/dave/.android-keys/countersink-release.jks
+storePassword=…
+keyAlias=countersink
+keyPassword=…
+```
+
+Until that file exists, release builds are signed with the debug key, which
+`tool/build_release.sh` refuses to hand back.
+
+The key's certificate fingerprint (the `signer-sha256` line of
+`dist/release/*.BUILD-INFO.txt`) is `AllowedAPKSigningKeys` in the F-Droid
+recipe:
+
+```
+8c2f376d876fce16d0fdee280228f658636008d066ed23b8e7a78fb37110514d
+```
+
+The key is useless without its password, which is only in
+`android/key.properties`. Back that file up with the keystore, somewhere other
+than this machine.
+
+## Cutting a release
+
+`main` only changes through pull requests that pass CI (the "Protect main"
+ruleset on GitHub), so the version bump goes through one too. Tags aren't
+covered by the ruleset; the tag is pushed on its own once the bump is merged.
+
+```bash
+# 1. Make sure main is what you want to ship, and CHANGELOG.md's
+#    "Unreleased" section describes it.
+git switch main && git pull
+
+# 2. Set the version on a branch. Turns "Unreleased" into this version's
+#    section.
+git switch -c release-0.2.0
+tool/bump_version.sh minor          # or patch / major / an exact X.Y.Z
+
+# 2b. Write the store's release notes: a short, user-facing summary of the
+#     CHANGELOG.md section, 500 characters at most, in
+#     fastlane/metadata/android/en-US/changelogs/<code>1.txt, then copy it to
+#     <code>2.txt and <code>3.txt (1001.txt, 1002.txt and 1003.txt for 0.1.0;
+#     see "ABI splits"). bump_version.sh prints the exact commands;
+#     build_release.sh refuses to build without all three.
+
+# 3. Commit the release's files by name, open a pull request, and merge it
+#    once CI passes. Naming them keeps anything else in the working tree out
+#    of the release. The notes are new files, so add them first.
+git add fastlane/metadata/android/en-US/changelogs/
+git commit -m "Release v0.2.0" -- pubspec.yaml CHANGELOG.md \
+  fastlane/metadata/android/en-US/changelogs/
+git push -u origin release-0.2.0
+gh pr create --fill && gh pr merge --rebase   # after CI is green
+
+# 4. Tag the merged commit on main, and push only the tag.
+git switch main && git pull
+git tag -a v0.2.0 -m "Release v0.2.0"
+git push origin v0.2.0
+
+# 5. Build from the tag.
+tool/build_release.sh --ref v0.2.0
+
+# 6. Publish the APK and update the page at countersink.superdavelab.com.
+tool/deploy_site.sh --dry-run       # check first
+tool/deploy_site.sh
+
+# 7. Publish the same APK as a GitHub release.
+tool/github_release.sh --dry-run 0.2.0
+tool/github_release.sh 0.2.0
+```
+
+`tool/deploy_site.sh` builds the page from `site/`, fills in the version,
+date, size and SHA-256 from the newest release APK in `dist/release/` (never a
+snapshot or debug-signed build), and rsyncs it to
+`root@davekoons.com:/var/www/countersink`. It never deletes anything on the
+server, so earlier APKs stay downloadable.
+
+`tool/build_release.sh` builds in a clean temporary checkout of exactly that
+tag, runs `flutter analyze` and `flutter test`, builds one APK per ABI and
+one universal APK, and then **refuses** them all if any one:
+
+- it asks for any permission outside the allow-list at the top of the script
+  (the camera, to receive from another phone, and nothing else) —
+  `INTERNET` above all;
+- it's signed with the debug key;
+- has a version that doesn't match `pubspec.yaml`, or a code that doesn't
+  match the formula (see "ABI splits");
+- is signed by a different key from the others.
+
+Output lands in `dist/release/` (gitignored): the universal `countersink-X.Y.Z.apk`,
+the per-ABI `countersink-X.Y.Z-armeabi-v7a.apk`, `-arm64-v8a.apk` and `-x86_64.apk`,
+a `.sha256` for each, and a `BUILD-INFO.txt` recording the commit, Flutter
+version, signing certificate and every APK's version code and SHA-256. Builds
+from an untagged commit are named `countersink-X.Y.Z-<commit>.apk` (and so on) so
+they can't pass for a release.
+
+`build_release.sh` uploads nothing; publishing is steps 6 and 7, separate
+and deliberate.
+
+`tool/github_release.sh` attaches all four APKs and their `.sha256` files to
+a GitHub release for the tag, with the version's CHANGELOG.md section and the
+signing certificate's fingerprint as the notes. It checks the APKs were built
+from the commit the tag points to on GitHub; F-Droid's recipe fetches the
+per-ABI ones by name, so don't rename them. The universal APK is the same
+file the site offers:
+signed by this key, not built by CI. IzzyOnDroid can pick new versions up
+from these releases.
+
+## Reproducible builds
+
+F-Droid rebuilds each release from source and publishes the developer-signed
+APK only if its own build matches byte for byte. What makes that work:
+
+- `build_release.sh` always builds at `/tmp/countersink-build`, because Flutter
+  writes the build path into the compiled app. F-Droid's recipe builds there
+  too.
+- Packages come from `pubspec.lock` exactly (`--enforce-lockfile`), fetched
+  into the build directory.
+- `android/app/build.gradle.kts` leaves out AGP's VCS info and the
+  dependency-metadata signing block, which F-Droid rejects.
+- F-Droid deletes the `signingConfigs` block and the `signingConfig =` line
+  from `build.gradle.kts` before building, one whole line at a time, so its
+  APK comes out unsigned. Keep that line a single line (the choice of key is
+  made in `releaseSigning` above it): split over several lines, the leftover
+  pieces stop the file compiling, which is how Ebb's first F-Droid build
+  failed.
+- `android/reproducible.cmake` drops the linker build ID from native plugin
+  code (`jni`, and the QR scanner's zxing-cpp).
+
+Nexpill and Ebb are published this way. For Countersink it is unproven until
+its first release: run `tool/fdroid_build_test.sh` against the tagged commit
+before submitting the recipe. If F-Droid's build doesn't match, remove
+`Binaries` and `AllowedAPKSigningKeys` from the recipe and F-Droid signs with
+its own key instead (then its users can't update from the website's APK, or
+back).
+
+To run the check yourself (`sudo apt install apksigcopier`):
+
+```bash
+apksigcopier compare dist/release/countersink-X.Y.Z.apk other-build.apk && echo match
+```
+
+## ABI splits
+
+F-Droid asks Flutter apps to ship one APK per processor type (ABI) rather
+than one universal APK carrying all three: each is about a third of the size.
+The website keeps offering the universal APK, which works on any phone.
+
+Every APK gets its own version code, set in `android/app/build.gradle.kts`
+with the code F-Droid gave us: ten times the pubspec code, plus a digit for
+the ABI.
+
+| APK | Digit | 0.1.0 (pubspec code 100) |
+|---|---|---|
+| universal (website) | 0 | 1000 |
+| `armeabi-v7a` | 1 | 1001 |
+| `arm64-v8a` | 2 | 1002 |
+| `x86_64` | 3 | 1003 |
+
+The ABI digit comes last, so every APK of a new version outranks every APK of
+the old one, and on a single version F-Droid offers each device the highest
+code it can run. This replaces Flutter's own split numbering (ABI × 1000 +
+code), which five-digit pubspec codes would overflow. The universal APK gets
+the same ×10, so moving between the website's download and F-Droid is never a
+downgrade.
+
+F-Droid looks up each version's "what's new" by the APK's own code, so every
+version needs identical changelogs at `<code>1.txt`, `<code>2.txt` and
+`<code>3.txt`.
+
+## F-Droid
+
+The recipe is drafted in [fdroid/com.superdavelab.countersink.yml](fdroid/com.superdavelab.countersink.yml).
+It follows fdroiddata's `templates/build-flutter.yml` and has no comments,
+because fdroiddata wants none, so the reasoning lives here:
+
+- Flutter comes from F-Droid's `flutter` srclib, checked out at the version
+  pinned in `.github/workflows/ci.yml`. Bumping Flutter there is enough;
+  F-Droid follows on the next release.
+- The source is moved to `/tmp/countersink-build` for `pub get` and the build, the
+  same path `build_release.sh` uses, then moved back.
+- `PUB_CACHE` is inside the source, so F-Droid's scanner checks every
+  package; `scandelete` removes any binary it flags.
+- One build block per ABI, each building only its own
+  (`--split-per-abi --target-platform android-arm`, `android-arm64`,
+  `android-x64`), exactly as `build_release.sh` does, and pointing its
+  `binary:` at the matching APK on the GitHub release, which it must match
+  byte for byte. `VercodeOperation` gives each block its code when F-Droid
+  picks up a new tag.
+Before changing the recipe or anything about the build, test it locally:
+`tool/fdroid_build_test.sh --ref <commit>` runs F-Droid's own build of that
+commit in the Docker image fdroiddata's CI uses, building every ABI, and, if
+`dist/release/` has
+signed APKs from the same commit, checks each of F-Droid's builds matches the
+signed APK for its ABI. A
+failure there costs ten minutes instead of a round trip through the merge
+request's pipeline.
+
+To submit: fork https://gitlab.com/fdroid/fdroiddata, add it as
+`metadata/com.superdavelab.countersink.yml` with the version fields, the commit
+and `AllowedAPKSigningKeys` set from a real release, and open a merge
+request. Check `Categories` against fdroiddata's current list first
+(`config/categories.yml` there): the draft's Habit Tracker was on it on
+2026-11-26. The draft still names 0.1.0, a beta built before there was a
+repository, which F-Droid can't build. After that, F-Droid finds new versions
+from the tags on its own — no new merge request per release. Store text,
+screenshots and per-version changelogs come from `fastlane/metadata/android/`
+in this repo, keyed by version code.
+
+## Keeping up to date
+
+Flutter moves fast. For one developer the aim is to upgrade on purpose, not
+constantly.
+
+- **Packages** (pub.dev): Dependabot opens **one grouped pull request a month**
+  with minor and patch updates (`.github/dependabot.yml`). CI runs on it —
+  tests plus the permission check — so a green one is safe to merge. Major
+  versions are ignored; take those deliberately.
+- **The Flutter SDK is pinned** — **3.47.5**, in `.github/workflows/ci.yml`.
+  Dependabot never touches it. Upgrade it deliberately, once or twice a year
+  or when a plugin demands it, and do it locally and in CI together:
+  `flutter upgrade`, fix what breaks (usually Gradle, the Android Gradle
+  Plugin or Kotlin), update `flutter-version` in `ci.yml`, commit both.
+- **`pubspec.lock` is committed**, so nothing changes under you between
+  upgrades — and F-Droid builds exactly those versions.
+- **Why there's no rush:** with no network access, most published
+  vulnerabilities in dependencies can't be reached. The risk that matters is
+  a dependency *adding a permission*, and CI catches that on every push.
+- **Fewer dependencies, less churn.** Prefer a few lines of platform code over
+  a plugin when the need is small, as with the backup file pickers.
+
+## Not yet
+
+- **Release builds in CI.** CI already checks every push, debug-signed. A
+  tag-triggered signed build would need the signing key
+  as a repository secret. Worth it once releases are regular; until then the
+  key stays on one machine.
+- **Generated changelogs.** The per-version files in
+  `fastlane/metadata/android/en-US/changelogs/` are written by hand;
+  generating them from `CHANGELOG.md` would keep the two in step.
