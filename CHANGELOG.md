@@ -7,6 +7,8 @@ New entries go under **Unreleased** as work lands.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-26
+
 ### Added
 - Website and Send feedback in Settings. Each hands the address to the
   phone's browser when tapped; Countersink still has no internet permission.

@@ -1,0 +1,2 @@
+• New: Website and Send feedback in Settings. Each opens in your phone's browser when you tap it; Countersink itself still has no internet permission.
+• This is the first version built from the public source code on GitHub.
