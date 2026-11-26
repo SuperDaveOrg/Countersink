@@ -19,7 +19,7 @@ bool isWide(BuildContext context) =>
     MediaQuery.sizeOf(context).width >= wideBreakpoint;
 
 /// Padding for a scrolling list that keeps its content [maxWidth] wide and
-/// centred, on top of the list's own [base] padding. The list itself stays
+/// centered, on top of the list's own [base] padding. The list itself stays
 /// full width, so it scrolls from anywhere on the screen, margins included.
 EdgeInsets readablePadding(
   BuildContext context, {
@@ -31,7 +31,7 @@ EdgeInsets readablePadding(
   return base + EdgeInsets.symmetric(horizontal: gutter);
 }
 
-/// Centres a non-scrolling [child] at a readable width.
+/// Centers a non-scrolling [child] at a readable width.
 class Readable extends StatelessWidget {
   const Readable({
     super.key,

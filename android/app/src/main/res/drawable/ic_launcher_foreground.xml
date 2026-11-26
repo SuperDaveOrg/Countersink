@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generated from assets/brand/countersink_logo.svg. Adaptive icon
      foreground: the logo without its badge, which is the icon's background
-     colour. The clay stroke is drawn cream and wider first for the edge
+     color. The clay stroke is drawn cream and wider first for the edge
      around it, since vector drawables have no paint-order. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"

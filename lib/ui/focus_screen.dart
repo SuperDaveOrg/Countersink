@@ -120,7 +120,7 @@ class _FocusScreenState extends State<FocusScreen> {
           if (counter.daily) l.today,
         ].join(' · ');
 
-        // The clock and battery icons, light or dark to suit the colour
+        // The clock and battery icons, light or dark to suit the color
         // they now sit on.
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: ink == Colors.white

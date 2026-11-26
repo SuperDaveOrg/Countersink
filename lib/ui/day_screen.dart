@@ -297,7 +297,7 @@ class _DayScreenState extends State<DayScreen> {
 /// the time on the clock it happened.
 typedef EntryDraft = ({int delta, TimeOfDay time});
 
-/// Asks how much was added or taken away, and when. Null if cancelled.
+/// Asks how much was added or taken away, and when. Null if canceled.
 Future<EntryDraft?> showEntryDialog(
   BuildContext context, {
   required String title,

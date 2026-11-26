@@ -140,7 +140,7 @@ String encodeBackup(BackupData data, {required DateTime exportedAt}) {
 
 String _instant(DateTime at) => at.toUtc().toIso8601String();
 
-/// "#C4613F": the card colour without its alpha, which is always solid.
+/// "#C4613F": the card color without its alpha, which is always solid.
 String _colorText(int argb) =>
     '#${(argb & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
 
@@ -313,14 +313,14 @@ class _Reader {
     final s = value<String>(key);
     final m = RegExp(r'^#([0-9a-fA-F]{6})$').firstMatch(s);
     if (m == null) {
-      throw _damaged('$where: "$key" is not a colour like #C4613F');
+      throw _damaged('$where: "$key" is not a color like #C4613F');
     }
     return 0xFF000000 | int.parse(m.group(1)!, radix: 16);
   }
 
   int? optionalColor(String key) => _json[key] == null ? null : color(key);
 
-  /// What is drawn over the colour; nothing unless the file says.
+  /// What is drawn over the color; nothing unless the file says.
   CounterPattern pattern(String key) {
     final s = optionalString(key);
     if (s == null) return CounterPattern.none;

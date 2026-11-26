@@ -26,7 +26,7 @@ typedef CounterDraft = ({
 
 /// Asks for a counter's name, description, step, look and whether it counts
 /// per day. Editing [existing] starts from what it has; adding starts empty,
-/// in [suggested]. Null if cancelled.
+/// in [suggested]. Null if canceled.
 Future<CounterDraft?> showCounterEditor(
   BuildContext context, {
   required CountersSnapshot counters,
@@ -211,7 +211,7 @@ class _CounterEditorState extends State<_CounterEditor> {
     ));
   }
 
-  /// Every colour, a second colour and patterns, on a screen of their own.
+  /// Every color, a second color and patterns, on a screen of their own.
   Future<void> _more() async {
     final look = await showAppearance(context, look: _look, name: _name.text);
     if (look != null && mounted) setState(() => _look = look);

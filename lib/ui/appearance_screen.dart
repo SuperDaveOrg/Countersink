@@ -21,7 +21,7 @@ Future<CounterLook?> showAppearance(
   ),
 );
 
-/// Every way a counter's card can look: any colour, a second colour to
+/// Every way a counter's card can look: any color, a second color to
 /// blend into, and a pattern, with the card itself shown as it will be.
 class AppearanceScreen extends StatefulWidget {
   const AppearanceScreen({super.key, required this.look, required this.name});
@@ -187,7 +187,7 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
 }
 
 /// The named palette as a grid of round swatches, with "none" in front when
-/// allowed and a swatch for mixing any other colour at the end.
+/// allowed and a swatch for mixing any other color at the end.
 class _Swatches extends StatelessWidget {
   const _Swatches({
     required this.selected,
@@ -209,7 +209,7 @@ class _Swatches extends StatelessWidget {
     final l = context.l;
     final selected = this.selected;
     final custom = selected != null && !counterPalette.contains(selected);
-    // Full width, so the card around it is as wide as its neighbours
+    // Full width, so the card around it is as wide as its neighbors
     // however the swatches happen to wrap.
     return Container(
       width: double.infinity,
@@ -248,7 +248,7 @@ class _Swatches extends StatelessWidget {
                     : null,
               ),
             ),
-          // Any colour at all. Shows the one in use when it isn't a named one.
+          // Any color at all. Shows the one in use when it isn't a named one.
           ColorSwatchButton(
             name: l.customColor,
             selected: custom,
@@ -403,8 +403,8 @@ class _PatternChoice extends StatelessWidget {
   }
 }
 
-/// Mixes any colour: hue, saturation and brightness on sliders, or a hex
-/// code typed in. Null if cancelled.
+/// Mixes any color: hue, saturation and brightness on sliders, or a hex
+/// code typed in. Null if canceled.
 Future<Color?> showColorPicker(
   BuildContext context, {
   required Color initial,

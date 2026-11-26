@@ -56,8 +56,8 @@ void main() {
     expect(totals, {DateTime(2026, 11, 21): 19, DateTime(2026, 11, 22): 6});
   });
 
-  test('summariseDays lists days newest first, with totals and entries', () {
-    final days = summariseDays([
+  test('summarizeDays lists days newest first, with totals and entries', () {
+    final days = summarizeDays([
       tap(DateTime(2026, 11, 20, 9), 8),
       tap(DateTime(2026, 11, 20, 18), 6),
       tap(DateTime(2026, 11, 22, 9), 7),
@@ -71,16 +71,16 @@ void main() {
     ]);
   });
 
-  test('summariseDays follows the day-start hour', () {
-    final days = summariseDays([
+  test('summarizeDays follows the day-start hour', () {
+    final days = summarizeDays([
       tap(DateTime(2026, 11, 22, 23), 5),
       tap(DateTime(2026, 11, 23, 0, 30), 5),
     ], dayStartHour: 4);
     expect(days, [(day: DateTime(2026, 11, 22), total: 10, entries: 2)]);
   });
 
-  test('summariseDays of nothing is empty', () {
-    expect(summariseDays(const []), isEmpty);
+  test('summarizeDays of nothing is empty', () {
+    expect(summarizeDays(const []), isEmpty);
   });
 
   test('a clock time lands on its counting day', () {

@@ -36,7 +36,7 @@ flutter:
     - assets/brand/countersink_logo_512.png
 
   # Bundled, never fetched: Countersink has no network. Both SIL OFL 1.1; the
-  # licence texts ship alongside in assets/fonts/.
+  # license texts ship alongside in assets/fonts/.
   fonts:
     - family: Fraunces
       fonts:

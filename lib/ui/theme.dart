@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 ///
 /// Every app in the family shares one look: Fraunces for titles and the
 /// numbers that matter, Figtree for text, warm paper, cards with a hairline
-/// border. The colours here are the family's own tokens (the cream, ink and
+/// border. The colors here are the family's own tokens (the cream, ink and
 /// clay of superdavelab.com and Ebb's "Tide"); Countersink puts the clay in
 /// front where Nexpill uses teal and Ebb uses navy.
 ///
 /// Fonts are bundled (assets/fonts, SIL OFL). Never fetch them at runtime:
 /// Countersink has no network, by design.
 
-/// The handful of colours a look is built from.
+/// The handful of colors a look is built from.
 class CountersinkPalette {
   const CountersinkPalette({
     required this.name,
@@ -66,7 +66,7 @@ class CountersinkPalette {
 
   /// The dark twin sits on true black: nothing lit where there's nothing
   /// to show, which is easier on screens that light each dot themselves and
-  /// lets a counter's colour stand out.
+  /// lets a counter's color stand out.
   static const clayDark = CountersinkPalette(
     name: 'Clay',
     primary: Color(0xFFE48D6D),
@@ -98,8 +98,8 @@ const counterColors = [
   Color(0xFF196741),
 ];
 
-/// Every colour offered by name: the family's five, then more in the same
-/// earthy register. Any other colour can be mixed by hand.
+/// Every color offered by name: the family's five, then more in the same
+/// earthy register. Any other color can be mixed by hand.
 const counterPalette = [
   ...counterColors,
   Color(0xFF8C3B2E), // brick
@@ -120,7 +120,7 @@ const counterPalette = [
 ];
 
 /// White or the family's dark ink, whichever reads better on [fill]. Worked
-/// out from the counter's own colour, never from the phone's light or dark
+/// out from the counter's own color, never from the phone's light or dark
 /// setting, so a card stays readable in both.
 Color inkOn(Color fill) {
   const dark = Color(0xFF14232E);

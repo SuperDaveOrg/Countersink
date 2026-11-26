@@ -65,7 +65,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     final hour = _store.dayStartHour;
     final days = events == null
         ? const <DaySummary>[]
-        : summariseDays(events, dayStartHour: hour);
+        : summarizeDays(events, dayStartHour: hour);
     final today = countingDay(_store.now, dayStartHour: hour);
     final allTime = _store.counters.totals[counter.id] ?? 0;
     // A goal only means something per day or per week on a per-day

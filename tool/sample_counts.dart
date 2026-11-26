@@ -117,7 +117,7 @@ Map<String, Object?> sampleBackup(DateTime now) => {
                 goal: 8,
                 perDay: true,
                 events: _daily(now, days: 14, typical: 7, today: 5)),
-            _counter('Kilometres run',
+            _counter('Kilometers run',
                 description: 'Since the first of the month',
                 color: '#2F5A45',
                 pattern: 'stripes',

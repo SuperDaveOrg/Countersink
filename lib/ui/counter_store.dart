@@ -168,7 +168,7 @@ class CounterStore extends ChangeNotifier {
   /// a per-day counter.
   bool _belowZero(Counter counter, List<TapEvent> after) {
     if (!counter.daily) return after.fold(0, (sum, e) => sum + e.delta) < 0;
-    return summariseDays(
+    return summarizeDays(
       after,
       dayStartHour: dayStartHour,
     ).any((d) => d.total < 0);
@@ -179,7 +179,7 @@ class CounterStore extends ChangeNotifier {
   /// count below zero for that day.
   Future<bool> canCountPerDay(Counter counter) async {
     final events = await repository.events(counter.id);
-    return !summariseDays(
+    return !summarizeDays(
       events,
       dayStartHour: dayStartHour,
     ).any((d) => d.total < 0);
@@ -352,7 +352,7 @@ class CounterStore extends ChangeNotifier {
     ),
   );
 
-  /// The colour a new counter is offered: the family colours in turn.
+  /// The color a new counter is offered: the family colors in turn.
   Color get nextColor =>
       counterColors[_counters.counters.length % counterColors.length];
 

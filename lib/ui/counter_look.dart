@@ -4,7 +4,7 @@ import 'package:countersink/l10n/app_localizations.dart';
 import 'package:countersink/models/counter.dart';
 import 'package:countersink/ui/theme.dart';
 
-/// How a counter's card is painted: its colour, a second colour it may blend
+/// How a counter's card is painted: its color, a second color it may blend
 /// into, and a pattern drawn over both.
 typedef CounterLook = ({Color color, Color? color2, CounterPattern pattern});
 
@@ -14,12 +14,12 @@ CounterLook lookOf(Counter counter) => (
   pattern: counter.pattern,
 );
 
-/// One flat colour and nothing else.
+/// One flat color and nothing else.
 CounterLook plainLook(Color color) =>
     (color: color, color2: null, pattern: CounterPattern.none);
 
-/// The blend from the first colour to the second, corner to corner; null
-/// for a card of one colour.
+/// The blend from the first color to the second, corner to corner; null
+/// for a card of one color.
 Gradient? lookGradient(CounterLook look) => look.color2 == null
     ? null
     : LinearGradient(
@@ -33,8 +33,8 @@ Color inkOnLook(CounterLook look) => inkOn(
   look.color2 == null ? look.color : Color.lerp(look.color, look.color2, 0.5)!,
 );
 
-/// A palette colour's name, or the hex code of one mixed by hand: what a
-/// screen reader says for a swatch, which is otherwise only a colour.
+/// A palette color's name, or the hex code of one mixed by hand: what a
+/// screen reader says for a swatch, which is otherwise only a color.
 String colorName(AppLocalizations l, Color color) {
   final names = [
     l.colorClay,
@@ -66,7 +66,7 @@ String colorName(AppLocalizations l, Color color) {
 String hexOf(Color color) =>
     '#${(color.toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
 
-/// "#C4613F" or "c4613f" as a colour; null if it isn't six hex digits.
+/// "#C4613F" or "c4613f" as a color; null if it isn't six hex digits.
 Color? parseHex(String text) {
   final m = RegExp(r'^#?([0-9a-fA-F]{6})$').firstMatch(text.trim());
   return m == null

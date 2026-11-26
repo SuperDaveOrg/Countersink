@@ -98,7 +98,7 @@
   "colorGreen": "Green",
   "colorCustom": "Custom",
   "@colorCustom": {
-    "description": "Screen-reader name for a counter colour that isn't one of the named ones."
+    "description": "Screen-reader name for a counter color that isn't one of the named ones."
   },
   "groups": "Groups",
   "addGroup": "Add group",
@@ -268,7 +268,7 @@
   "done": "Done",
   "sampleCount": "12",
   "@sampleCount": {
-    "description": "A sample number shown on the preview card while choosing a counter's colours."
+    "description": "A sample number shown on the preview card while choosing a counter's colors."
   },
   "reorderCounters": "Reorder counters",
   "moveToGroup": "Move to another group",

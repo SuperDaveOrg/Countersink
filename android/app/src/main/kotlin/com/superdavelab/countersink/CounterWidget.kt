@@ -20,7 +20,7 @@ import kotlin.math.ceil
 import kotlin.math.pow
 
 /**
- * The home-screen widget: one counter, in its own colours, with minus and
+ * The home-screen widget: one counter, in its own colors, with minus and
  * plus. A press counts without opening the app; a touch on the name or the
  * number opens it.
  *
@@ -106,7 +106,7 @@ class CounterWidget : AppWidgetProvider() {
         /** Narrower than this, in dp, the buttons go under the number. */
         private const val WIDE = 170
 
-        /** The family's clay, for a widget with no counter to take colour from. */
+        /** The family's clay, for a widget with no counter to take color from. */
         private const val CLAY = 0xFFC4613F.toInt()
 
         /** Dark ink for words on a light card; white goes on a dark one. */
@@ -191,7 +191,7 @@ class CounterWidget : AppWidgetProvider() {
             layout: Int,
         ) = RemoteViews(context.packageName, layout).apply {
             val ink = inkOn(counter.color, counter.color2)
-            // The card's colour, and the second one blended in from the far
+            // The card's color, and the second one blended in from the far
             // corner if it has one. Patterns are left to the app.
             setInt(R.id.widget_bg, "setColorFilter", counter.color)
             if (counter.color2 != null) {

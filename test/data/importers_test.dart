@@ -48,7 +48,7 @@ void main() {
       expect(got.skipped, 0);
     });
 
-    test('counters get places in order, and the colours in turn', () {
+    test('counters get places in order, and the colors in turn', () {
       final got = read(ImportSource.betterCounter, file);
       expect([for (final c in got.counters) c.position], [0, 1, 2, 3]);
       expect(
@@ -181,7 +181,7 @@ void main() {
         '"labels":[{"id":2,"name":"Health","color":4292956737},'
         '{"id":3,"name":"Unused","color":4278190080}]}';
 
-    test('labels that hold counters become groups, in their colour', () {
+    test('labels that hold counters become groups, in their color', () {
       final got = read(ImportSource.simpleCounter, file);
       expect([for (final g in got.groups) g.name], ['Health', 'Imported']);
       final health = got.groups.first;

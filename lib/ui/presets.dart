@@ -8,10 +8,10 @@ import 'package:countersink/ui/theme.dart';
 typedef Preset = ({String name, String description, List<Counter> counters});
 
 /// The sets on offer, named in the language on screen. Each is a use that
-/// specialised counters are made for, built from nothing but ordinary and
+/// specialized counters are made for, built from nothing but ordinary and
 /// calculated counters, so every part of it can be edited afterwards.
 List<Preset> presets(AppLocalizations l) {
-  // The family's colours, by their place in [counterColors].
+  // The family's colors, by their place in [counterColors].
   const clay = 0, teal = 1, navy = 2, lavender = 3, green = 4;
 
   Counter counter(

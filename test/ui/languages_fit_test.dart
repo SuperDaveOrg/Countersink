@@ -104,7 +104,7 @@ void main() {
         await tester.pumpAndSettle();
       }
 
-      // The counter's menu, then the editor and the colour screen.
+      // The counter's menu, then the editor and the color screen.
       await menu();
       await pick(l.edit);
       // On a small phone the editor scrolls; bring the button into view.
@@ -112,7 +112,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.byTooltip(l.moreColors));
       await tester.pumpAndSettle();
-      // Down to the swatch for mixing any colour, then on to the patterns.
+      // Down to the swatch for mixing any color, then on to the patterns.
       await tester.ensureVisible(find.byTooltip(l.customColor).first);
       await tester.pumpAndSettle();
       await tester.tap(find.byTooltip(l.customColor).first);

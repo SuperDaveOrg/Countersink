@@ -136,7 +136,7 @@ void main() {
   });
 
   test(
-    'a second colour and a pattern come back, and are left out when plain',
+    'a second color and a pattern come back, and are left out when plain',
     () {
       final text = encodeBackup(sample, exportedAt: DateTime.utc(2026, 11, 23));
       final back = decodeBackup(text);
@@ -455,14 +455,14 @@ void main() {
       );
     });
 
-    test('a colour that is not one', () {
+    test('a color that is not one', () {
       expect(
         () => decodeBackup(fileWith(counter: {'color': 'clay'})),
         refused(BackupProblem.damaged, '"color"'),
       );
     });
 
-    test('a pattern it does not know, a second colour that is not one', () {
+    test('a pattern it does not know, a second color that is not one', () {
       expect(
         () => decodeBackup(fileWith(counter: {'pattern': 'plaid'})),
         refused(BackupProblem.damaged, 'plaid'),

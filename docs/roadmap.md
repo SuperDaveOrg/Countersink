@@ -13,7 +13,7 @@ won't. The reasoning and evidence are in
 | History per counter: each day's total, newest first | Done |
 | Groups as tabs, counter cards with minus, number, plus | Done |
 | Per-day counters showing today's total | Done |
-| Add a counter (name, description, colour, per-day) | Done |
+| Add a counter (name, description, color, per-day) | Done |
 | Edit a counter, keeping its history | Done, from press and hold |
 | Delete a counter, with Undo instead of a confirmation | Done |
 | Custom step per counter | Done |
@@ -47,7 +47,7 @@ won't. The reasoning and evidence are in
 | What "private" means here ([privacy.md](privacy.md)) and how to report a problem (`SECURITY.md`) | Done |
 | Send to and receive from another phone by QR codes, all counters or chosen ones | Done; scanning with a real camera between two phones not yet tried |
 | Import from BetterCounter, Counter and Simple Counter files | Done, against files shaped by each app's code; not yet tried with one made on a phone |
-| Any colour for a counter, a second colour to blend into, patterns | Done |
+| Any color for a counter, a second color to blend into, patterns | Done |
 | Light and dark looks, following the phone | Done |
 | Settings and About | Done |
 
@@ -102,6 +102,6 @@ Everything planned for this phase is built; see the table above.
 - Ads, accounts, cloud sync, analytics, rating prompts, or a gate on anything
   that is free.
 - Counting with the screen off: Android intercepts the volume keys then.
-- Material You colours. The family's clay is part of what Countersink is,
-  and a counter already takes any colour; the phone's wallpaper colours
+- Material You colors. The family's clay is part of what Countersink is,
+  and a counter already takes any color; the phone's wallpaper colors
   would replace the first and add nothing to the second.

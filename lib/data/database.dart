@@ -96,7 +96,7 @@ class CountersinkDatabase {
   /// phone that skipped several releases replays them in order.
   Future<void> _upgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
-      // A card's look beyond one colour: a second colour to blend into, and
+      // A card's look beyond one color: a second color to blend into, and
       // a pattern drawn over it.
       await db.execute('ALTER TABLE counters ADD COLUMN color2 INTEGER');
       await db.execute(

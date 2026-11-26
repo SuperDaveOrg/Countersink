@@ -35,13 +35,13 @@ New entries go under **Unreleased** as work lands.
 ## [0.1.0] - 2026-11-23
 
 ### Added
-- Counters in groups, each group a tab. A counter is a coloured card with
+- Counters in groups, each group a tab. A counter is a colored card with
   minus on the left, plus on the right, and its name, number and description
   between them.
 - Every tap is saved with its time; a counter's value is the sum of its taps.
 - Counters that count per day: they show today's total and start from zero
   each day, with past days kept.
-- Add a counter with a name, an optional description, a colour and the
+- Add a counter with a name, an optional description, a color and the
   per-day switch.
 - Press and hold a counter to edit or delete it. Editing keeps its history.
   Deleting offers Undo, which brings the counter back with every tap it had.
@@ -61,8 +61,8 @@ New entries go under **Unreleased** as work lands.
   Save and Open pickers. The file is plain JSON in a documented format and
   holds everything, the day-start hour included. A restore checks the whole
   file first and says what it holds before replacing anything.
-- Twenty named colours for counters, any other colour mixed by hand (hue,
-  saturation, brightness or a hex code), a second colour to blend into, and
+- Twenty named colors for counters, any other color mixed by hand (hue,
+  saturation, brightness or a hex code), a second color to blend into, and
   three patterns: stripes, dots and a grid.
 - "Reorder counters" in a counter's menu opens the group's counters as a
   list to drag into order. "Move to another group" takes a counter, with its
@@ -126,7 +126,7 @@ New entries go under **Unreleased** as work lands.
   multiple of a number you choose, such as every 10, so sets can be counted
   without looking. It uses the phone's touch feedback and needs no
   permission.
-- A home-screen widget for any counter, in the counter's own colours, with
+- A home-screen widget for any counter, in the counter's own colors, with
   minus and plus that count without opening the app. "Add to home screen" in
   a counter's menu puts one there; it can also be added from the phone's
   widget list, which asks which counter. It resizes from one cell up, a

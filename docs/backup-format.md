@@ -83,9 +83,9 @@ app refuses the file instead of half-restoring it.
 | `id` | required | Unique in the file. |
 | `name` | required | Not empty. |
 | `description` | optional | Free text. |
-| `color` | required | The card's colour, `#RRGGBB`. |
-| `color2` | optional | A second colour the first blends into, corner to corner, `#RRGGBB`. |
-| `pattern` | optional | Drawn over the colour: `none` (the default), `stripes`, `dots` or `grid`. |
+| `color` | required | The card's color, `#RRGGBB`. |
+| `color2` | optional | A second color the first blends into, corner to corner, `#RRGGBB`. |
+| `pattern` | optional | Drawn over the color: `none` (the default), `stripes`, `dots` or `grid`. |
 | `step` | optional | How much one press of plus or minus changes the count; a whole number of 1 or more. 1 if absent. |
 | `goal` | optional | A number to reach; a whole number of 1 or more. For a `perDay` counter it is each day's goal, or the week's if `goalPeriod` says so. |
 | `goalPeriod` | optional | What a `perDay` counter's goal is for: `day` (the default) or `week`. It means nothing on a counter that isn't `perDay`. |
@@ -132,7 +132,7 @@ writes random UUIDs.
 - An id used twice.
 - A calculated counter whose `of` names something that isn't another
   counter in the file.
-- A colour that isn't `#RRGGBB`, a pattern, kind, formula or goal period it
+- A color that isn't `#RRGGBB`, a pattern, kind, formula or goal period it
   doesn't know, a time without an offset, a step, goal, buzz or starting number below 1, a day-start
   hour outside 0 to 11, a week's first day outside 1 to 7.
 

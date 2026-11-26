@@ -69,11 +69,11 @@ class Imported {
 /// What each app's file can and can't carry over:
 ///
 /// - BetterCounter keeps the time of every count, so the whole history
-///   comes across, one entry each. Colours and goals aren't in its file.
+///   comes across, one entry each. Colors and goals aren't in its file.
 /// - Counter keeps only the number and when it last changed, which becomes
 ///   a single entry of that size at that time.
 /// - Simple Counter keeps only the number, which becomes a single entry
-///   dated [now]. A label's colour becomes its counters' colour.
+///   dated [now]. A label's color becomes its counters' color.
 ///
 /// A count below zero, which the other two allow, comes in as zero: here a
 /// tally never goes below nothing.
@@ -229,7 +229,7 @@ Imported importBackup(BackupData data) {
   );
 }
 
-/// Collects what an importer finds, giving out ids, places and colours.
+/// Collects what an importer finds, giving out ids, places and colors.
 class _Builder {
   _Builder({required this.groupName, required this.colors, required this.now});
 
@@ -403,7 +403,7 @@ DateTime? _counterTime(String text) =>
     text.isEmpty ? null : DateTime.tryParse(text);
 
 /// `{"counters": [{id, name, value, defaultValue, labelId, …}],
-///   "labels": [{id, name, color}]}`, where a colour is a whole number,
+///   "labels": [{id, name, color}]}`, where a color is a whole number,
 /// 0xAARRGGBB.
 void _simpleCounter(String text, _Builder to) {
   final Object? json;

@@ -396,7 +396,7 @@ abstract class AppLocalizations {
   /// **'Green'**
   String get colorGreen;
 
-  /// Screen-reader name for a counter colour that isn't one of the named ones.
+  /// Screen-reader name for a counter color that isn't one of the named ones.
   ///
   /// In en, this message translates to:
   /// **'Custom'**
@@ -882,7 +882,7 @@ abstract class AppLocalizations {
   /// **'Done'**
   String get done;
 
-  /// A sample number shown on the preview card while choosing a counter's colours.
+  /// A sample number shown on the preview card while choosing a counter's colors.
   ///
   /// In en, this message translates to:
   /// **'12'**

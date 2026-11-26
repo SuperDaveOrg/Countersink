@@ -190,7 +190,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('edit a counter: its name, colour and history', (tester) async {
+  testWidgets('edit a counter: its name, color and history', (tester) async {
     await start(tester);
     await tester.tap(find.bySemanticsLabel('Add 1 to Pull-ups'));
     await tester.pumpAndSettle();
@@ -802,7 +802,7 @@ void main() {
       await tapSetting(tester, 'Restore from a backup');
       await tester.pumpAndSettle();
       expect(
-        find.textContaining('"Score": "color" is not a colour'),
+        find.textContaining('"Score": "color" is not a color'),
         findsOneWidget,
       );
       expect(store.counters.groups.single.name, 'Fitness');
@@ -3951,7 +3951,7 @@ void main() {
     });
   });
 
-  group('colours and patterns', () {
+  group('colors and patterns', () {
     Future<void> openEditor(WidgetTester tester) async {
       await start(tester);
       await hold(tester, 'Pull-ups');
@@ -3964,7 +3964,7 @@ void main() {
       await tester.pumpAndSettle();
     }
 
-    testWidgets('pick a colour from the wider palette', (tester) async {
+    testWidgets('pick a color from the wider palette', (tester) async {
       await openEditor(tester);
       await more(tester);
       expect(find.text('Color and pattern'), findsOneWidget);
@@ -3975,7 +3975,7 @@ void main() {
       expect(
         find.byTooltip('Ochre'),
         findsOneWidget,
-        reason: 'shown in the editor as the colour in use',
+        reason: 'shown in the editor as the color in use',
       );
       await tester.tap(find.text('Save'));
       await tester.pumpAndSettle();
@@ -3986,10 +3986,10 @@ void main() {
       );
     });
 
-    testWidgets('a second colour and a pattern', (tester) async {
+    testWidgets('a second color and a pattern', (tester) async {
       await openEditor(tester);
       await more(tester);
-      // The second set of swatches is the second colour's.
+      // The second set of swatches is the second color's.
       await tester.ensureVisible(find.byTooltip('Moss').last);
       await tester.tap(find.byTooltip('Moss').last);
       await tester.pumpAndSettle();
@@ -4043,7 +4043,7 @@ void main() {
       expect(widths, hasLength(1));
     });
 
-    testWidgets('the second colour can be taken off again', (tester) async {
+    testWidgets('the second color can be taken off again', (tester) async {
       final c = store.counters.counters.single;
       await store.updateCounter(
         Counter(
@@ -4069,7 +4069,7 @@ void main() {
       expect((after.color2, after.pattern), (null, CounterPattern.grid));
     });
 
-    testWidgets('any colour at all, by its hex code', (tester) async {
+    testWidgets('any color at all, by its hex code', (tester) async {
       await openEditor(tester);
       await more(tester);
       await tester.tap(find.byTooltip('Custom color').first);
@@ -4088,7 +4088,7 @@ void main() {
       expect(store.counters.counters.single.color, 0xFF336699);
     });
 
-    testWidgets('backing out of the colour screen keeps what was there', (
+    testWidgets('backing out of the color screen keeps what was there', (
       tester,
     ) async {
       await openEditor(tester);
@@ -4105,7 +4105,7 @@ void main() {
       );
     });
 
-    testWidgets('a one-tap family colour makes the card plain again', (
+    testWidgets('a one-tap family color makes the card plain again', (
       tester,
     ) async {
       final c = store.counters.counters.single;

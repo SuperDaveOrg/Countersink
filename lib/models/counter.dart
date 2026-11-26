@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-/// What is drawn over a card's colour.
+/// What is drawn over a card's color.
 enum CounterPattern { none, stripes, dots, grid }
 
 /// How a calculated counter is worked out from other counters.
@@ -53,11 +53,11 @@ class Counter {
   final String name;
   final String? description;
 
-  /// The card's colour, as 0xAARRGGBB.
+  /// The card's color, as 0xAARRGGBB.
   final int color;
 
-  /// A second colour the first blends into, corner to corner; null for a
-  /// card of one colour.
+  /// A second color the first blends into, corner to corner; null for a
+  /// card of one color.
   final int? color2;
 
   final CounterPattern pattern;

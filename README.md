@@ -9,9 +9,9 @@ boxes on a shelf. Counters live in groups, each group a tab, and each counter
 is a large number with minus on one side and plus on the other.
 
 <p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_counters.png" alt="The Fitness tab: four counters, each a coloured card with a large number between minus and plus, three with a goal for today" width="200">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_counters.png" alt="The Fitness tab: four counters, each a colored card with a large number between minus and plus, three with a goal for today" width="200">
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_history.png" alt="A counter's history: its total and streaks, a month calendar with each day's count, and the days listed below" width="200">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_editor.png" alt="Choosing a counter's colour and a second colour to blend into" width="200">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_editor.png" alt="Choosing a counter's color and a second color to blend into" width="200">
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_dark.png" alt="The counters in the dark theme, on true black" width="200">
 </p>
 <p align="center"><sub>Screenshots use fictional data.</sub></p>
@@ -50,7 +50,7 @@ tier, no account.
   scoreboard, made and missed.
 - **A home-screen widget** for any counter, and a **quick-settings tile**
   that adds to one you choose.
-- **Your own look**: any colour for a counter, a second to blend into,
+- **Your own look**: any color for a counter, a second to blend into,
   patterns, light and dark themes.
 
 ## Privacy
@@ -108,7 +108,7 @@ refuses any build that asks for a permission other than the camera; see
 [docs/RELEASING.md](docs/RELEASING.md). Plans:
 [docs/roadmap.md](docs/roadmap.md).
 
-## Licence
+## License
 
 Copyright (C) 2026 SuperDaveLab
 
@@ -120,6 +120,6 @@ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 FITNESS FOR A PARTICULAR PURPOSE. See [LICENSE](LICENSE) for the full text.
 
 The bundled fonts, Fraunces and Figtree, are under the SIL Open Font License;
-their licence texts are in [assets/fonts](assets/fonts).
+their license texts are in [assets/fonts](assets/fonts).
 
 Part of [SuperDave Lab](https://superdavelab.com/).

@@ -12,7 +12,7 @@ int? parseWholeNumber(String text) => int.tryParse(text.trim());
 
 /// Asks for one whole number, with the number keyboard. [initial] starts
 /// the field off, selected so typing replaces it. Nothing below [min] is
-/// accepted. Null if cancelled.
+/// accepted. Null if canceled.
 Future<int?> showNumberDialog(
   BuildContext context, {
   required String title,

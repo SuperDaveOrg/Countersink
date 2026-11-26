@@ -162,7 +162,7 @@ IFS=. read -r MA MI PA <<< "$VERSION"
   die "pubspec code $CODE doesn't match $VERSION (use tool/bump_version.sh)"
 
 # Only a commit carrying the matching tag is a release; anything else is
-# labelled with its commit so it can't be mistaken for one.
+# labeled with its commit so it can't be mistaken for one.
 if (( WORKING_TREE )); then
   KIND="release"
   NAME="countersink-$VERSION"

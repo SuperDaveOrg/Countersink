@@ -5,7 +5,7 @@ import 'package:countersink/models/counter_group.dart';
 import 'package:countersink/models/counters_snapshot.dart';
 import 'package:countersink/models/tap_event.dart';
 
-/// The repository's behaviour without a database, for widget tests.
+/// The repository's behavior without a database, for widget tests.
 class InMemoryCounterRepository implements CounterRepository {
   final groups = <String, CounterGroup>{};
   final counters = <String, Counter>{};

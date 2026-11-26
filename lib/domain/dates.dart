@@ -79,7 +79,7 @@ typedef DaySummary = ({DateTime day, int total, int entries});
 
 /// A counter's history a day at a time, newest first: each day that has any
 /// events, with its total and how many events made it up.
-List<DaySummary> summariseDays(
+List<DaySummary> summarizeDays(
   Iterable<TapEvent> events, {
   int dayStartHour = 0,
 }) {

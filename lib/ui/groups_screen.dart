@@ -198,7 +198,7 @@ class GroupsScreen extends StatelessWidget {
   }
 }
 
-/// Asks for a group's name; null if cancelled or left empty.
+/// Asks for a group's name; null if canceled or left empty.
 Future<String?> _askName(BuildContext context, {String? existing}) =>
     showDialog<String>(
       context: context,

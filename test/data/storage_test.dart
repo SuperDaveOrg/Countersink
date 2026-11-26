@@ -223,7 +223,7 @@ void main() {
     expect(s.totals['pullups'], 8);
   });
 
-  test('a second colour and a pattern round-trip', () async {
+  test('a second color and a pattern round-trip', () async {
     await repo.saveCounter(
       const Counter(
         id: 'laps',
